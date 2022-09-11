@@ -1,21 +1,17 @@
-let number1 = document.querySelector("#number1");
-let number2= document.querySelector("#number2");
-let number3= document.querySelector("#number3");
-let number4 = document.querySelector("#number4");
-let number5 = document.querySelector("#number5");
-let number6 = document.querySelector("#number6");
+let numbers = document.querySelectorAll("input");
 
-let inputs = document.querySelectorAll("input");
+numbers[0].focus();
 
-inputs.forEach((input)=>{
-    input.addEventListener("keyup",function(e){
-      if (e.target.value<=9 || e.target.value>=0) {
-        if (this.nextElementSibling.id != null) {
-            this.nextElementSibling.focus();
-        }
-      }
-      else{
-        e.target.value = 0;
-    }
-    })
+numbers.forEach(num=> {
+  num.addEventListener("input", function(){
+            if(num.value.length >1){
+                this.value = this.value[this.value.length -1]
+            }
+            if(num.nextElementSibling && num.value != ''){
+                num.nextElementSibling.focus()
+            }
+            else if(!num.nextElementSibling && num.value != ''){
+                num.blur();
+            }
+        })
 })
